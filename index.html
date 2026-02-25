@@ -635,6 +635,7 @@ footer{position:relative;z-index:1;padding:28px 64px;border-top:1px solid var(--
 
 <!-- CURSOR -->
 <div id="cur"></div>
+<div id="cur-ring"></div>
 
 <!-- WATER BACKGROUND -->
 <canvas id="water-canvas"></canvas>
@@ -686,6 +687,27 @@ footer{position:relative;z-index:1;padding:28px 64px;border-top:1px solid var(--
   </div>
 </div>
 
+<!-- RADIO -->
+<iframe id="yt-frame" src="" allow="autoplay; encrypted-media" allowfullscreen style="position:absolute;width:1px;height:1px;opacity:0;pointer-events:none;left:-9999px;" title="yt-audio"></iframe>
+<div id="radio-trigger" title="Motivational Radio — Click to Open">
+  <div class="rr-ripple-wrap">
+    <div class="rr-ripple paused"></div>
+    <div class="rr-ripple paused"></div>
+    <div class="rr-ripple paused"></div>
+    <div class="rr-btn" id="radio-icon">🎵</div>
+  </div>
+  <div class="rr-info">
+    <div class="rr-station">Moti FM
+      <div class="rr-eq paused" id="rr-eq">
+        <div class="rr-eq-bar"></div><div class="rr-eq-bar"></div>
+        <div class="rr-eq-bar"></div><div class="rr-eq-bar"></div>
+        <div class="rr-eq-bar"></div>
+      </div>
+    </div>
+    <div class="rr-track" id="rr-track-lbl">Motivational Radio</div>
+    <div class="rr-live"><div class="rr-live-dot"></div>LIVE</div>
+  </div>
+</div>
 
 <div id="radio-popup">
   <div class="rp-hd">
@@ -1563,7 +1585,7 @@ function fallback(q){
   if(/project|built|work|portfolio/.test(q))
     return 'Key projects: IDuela HR & Payroll (NARDI), Loan Management System (Thobela Pawn Shop), Request & Approval System (NARDI), and this portfolio site.';
   if(/contact|email|phone|reach|hire|available/.test(q))
-    return 'Clarance is available for work! Reach him at meragcm@gmail.com or +267 77447823. He\'s based in Nata, Botswana.';
+    return 'Clarance is available for work! Reach him at meragcm@gmail.com or +267 77447823. He\'s based in Gaborone, Botswana.';
   if(/edu|study|degree|university|school/.test(q))
     return 'Clarance holds a BEng in Computer Engineering from Botho University, plus BGCSE (36pts), JC (41pts), and PSLE Grade A.';
   if(/experience|job|role|work/.test(q))
@@ -1573,4 +1595,3 @@ function fallback(q){
 </script>
 </body>
 </html>
-
