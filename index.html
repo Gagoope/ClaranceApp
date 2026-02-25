@@ -688,66 +688,6 @@ footer{position:relative;z-index:1;padding:28px 64px;border-top:1px solid var(--
   </div>
 </div>
 
-<!-- RADIO -->
-<iframe id="yt-frame" src="" allow="autoplay; encrypted-media" allowfullscreen style="position:absolute;width:1px;height:1px;opacity:0;pointer-events:none;left:-9999px;" title="yt-audio"></iframe>
-<div id="radio-trigger" title="Motivational Radio — Click to Open">
-  <div class="rr-ripple-wrap">
-    <div class="rr-ripple paused"></div>
-    <div class="rr-ripple paused"></div>
-    <div class="rr-ripple paused"></div>
-    <div class="rr-btn" id="radio-icon">🎵</div>
-  </div>
-  <div class="rr-info">
-    <div class="rr-station">Moti FM
-      <div class="rr-eq paused" id="rr-eq">
-        <div class="rr-eq-bar"></div><div class="rr-eq-bar"></div>
-        <div class="rr-eq-bar"></div><div class="rr-eq-bar"></div>
-        <div class="rr-eq-bar"></div>
-      </div>
-    </div>
-    <div class="rr-track" id="rr-track-lbl">Motivational Radio</div>
-    <div class="rr-live"><div class="rr-live-dot"></div>LIVE</div>
-  </div>
-</div>
-
-<div id="radio-popup">
-  <div class="rp-hd">
-    <div class="rp-hd-l">🎵 Moti FM — Motivational Radio</div>
-    <button class="rp-hd-close" id="rp-close">✕</button>
-  </div>
-  <div class="rp-viz">
-    <div class="viz-ring paused"></div>
-    <div class="viz-ring paused"></div>
-    <div class="viz-ring paused"></div>
-    <div class="viz-ring paused"></div>
-    <img id="rp-disc" src="https://img.youtube.com/vi/inpok4MKVLM/hqdefault.jpg" class="rp-disc spin-pause" alt="Now Playing"/>
-    <div class="rp-wave-row">
-      <div class="wv paused"></div><div class="wv paused"></div><div class="wv paused"></div>
-      <div class="wv paused"></div><div class="wv paused"></div><div class="wv paused"></div>
-      <div class="wv paused"></div><div class="wv paused"></div><div class="wv paused"></div>
-      <div class="wv paused"></div><div class="wv paused"></div><div class="wv paused"></div>
-      <div class="wv paused"></div><div class="wv paused"></div><div class="wv paused"></div>
-      <div class="wv paused"></div>
-    </div>
-  </div>
-  <div class="rp-info">
-    <div class="rp-song" id="rp-song">It's Possible</div>
-    <div class="rp-artist" id="rp-artist">Les Brown — Motivational Speech</div>
-    <div class="rp-prog" id="rp-prog-bar"><div class="rp-prog-fill" id="rp-fill"></div></div>
-    <div class="rp-times"><span id="rp-cur">0:00</span><span id="rp-dur">--:--</span></div>
-  </div>
-  <div class="rp-controls">
-    <button class="rp-skip" id="rp-prev" title="Previous track">&#9664;&#9664;</button>
-    <button class="rp-play" id="rp-play"><svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><polygon points="5,3 19,12 5,21"/></svg></button>
-    <button class="rp-skip" id="rp-next" title="Next track">&#9654;&#9654;</button>
-    <div class="rp-vol">
-      <span class="rp-vol-ico">🔈</span>
-      <input type="range" class="rp-slider" id="rp-vol" min="0" max="100" value="80"/>
-      <span class="rp-vol-ico">🔊</span>
-    </div>
-    <a href="https://www.youtube.com/watch?v=inpok4MKVLM" target="_blank" class="rp-yt">▶ YT</a>
-  </div>
-</div>
 
 <!-- NAV -->
 <nav id="nav">
@@ -1580,13 +1520,13 @@ async function send(text){
 function fallback(q){
   q=q.toLowerCase();
   if(/skill|tech|stack|know|language|code|program/.test(q))
-    return 'Clarance is skilled in HTML, CSS, JavaScript, PHP, C#, SQL Server, MySQL, SAP B1 (9.x/10.0), SAP SDK (UI & DI API), Crystal Reports, Power BI, and Microsoft 365.';
+    return 'Clarance is skilled in HTML, CSS, JavaScript, PHP, C#, SQL Server, MySQL, SAP B1 (9.x/10.0), SAP SDK (UI & DI API), Crystal Reports, and Microsoft 365.';
   if(/sap|erp|b1|iduela/.test(q))
     return 'Clarance has hands-on SAP Business One experience — add-on development with the UI & DI API in C#, plus IDuela HR & Payroll configuration for NARDI.';
   if(/project|built|work|portfolio/.test(q))
     return 'Key projects: IDuela HR & Payroll (NARDI), Loan Management System (Thobela Pawn Shop), Request & Approval System (NARDI), and this portfolio site.';
   if(/contact|email|phone|reach|hire|available/.test(q))
-    return 'Clarance is available for work! Reach him at meragcm@gmail.com or +267 77447823. He\'s based in Nata, Botswana.';
+    return 'Clarance is available for work! Reach him at meragcm@gmail.com or +267 77447823. He\'s based in Gaborone, Botswana.';
   if(/edu|study|degree|university|school/.test(q))
     return 'Clarance holds a BEng in Computer Engineering from Botho University, plus BGCSE (36pts), JC (41pts), and PSLE Grade A.';
   if(/experience|job|role|work/.test(q))
@@ -1596,3 +1536,4 @@ function fallback(q){
 </script>
 </body>
 </html>
+
