@@ -335,79 +335,18 @@ h1.hname{font-family:var(--sans);font-size:clamp(52px,7.5vw,100px);font-weight:9
 #chat-send{padding:0 18px;background:transparent;border:none;border-left:1px solid var(--border);color:var(--accent);cursor:pointer;font-size:16px;transition:background .15s;}
 #chat-send:hover{background:var(--accent-glow);}
 
-/* ─── RADIO TRIGGER ─── */
-#radio-trigger{position:fixed;left:28px;bottom:28px;z-index:400;display:flex;align-items:center;gap:14px;padding:10px 20px 10px 10px;background:rgba(0,15,30,.6);border:1px solid rgba(255,77,46,.2);border-radius:var(--r);cursor:pointer;backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);transition:all .25s;box-shadow:0 8px 40px rgba(0,0,0,.4);}
-#radio-trigger:hover{border-color:rgba(255,77,46,.5);box-shadow:0 12px 50px rgba(255,77,46,.2);}
-.rr-btn{width:42px;height:42px;border-radius:50%;background:var(--accent2);display:flex;align-items:center;justify-content:center;font-size:16px;position:relative;z-index:1;flex-shrink:0;transition:transform .2s;box-shadow:0 4px 16px rgba(255,77,46,.4);}
-#radio-trigger:hover .rr-btn{transform:scale(1.1);}
-.rr-ripple-wrap{position:absolute;left:10px;width:42px;height:42px;display:flex;align-items:center;justify-content:center;}
-.rr-ripple{position:absolute;border-radius:50%;border:1.5px solid rgba(255,77,46,.5);opacity:0;animation:rrRipple 2.5s ease-out infinite;}
-.rr-ripple:nth-child(1){width:42px;height:42px;animation-delay:0s;}
-.rr-ripple:nth-child(2){width:60px;height:60px;animation-delay:.6s;border-color:rgba(255,77,46,.3);}
-.rr-ripple:nth-child(3){width:78px;height:78px;animation-delay:1.2s;border-color:rgba(255,77,46,.15);}
-.rr-ripple.paused{animation-play-state:paused;}
-@keyframes rrRipple{0%{opacity:.9;transform:scale(.6);}100%{opacity:0;transform:scale(1);}}
-.rr-info{display:flex;flex-direction:column;gap:2px;}
-.rr-station{font-family:var(--sans);font-size:12px;font-weight:800;color:var(--white);display:flex;align-items:center;gap:8px;}
-.rr-eq{display:flex;align-items:flex-end;gap:2px;height:14px;}
-.rr-eq-bar{width:3px;background:var(--accent2);border-radius:1px;animation:eqB .8s ease-in-out infinite alternate;}
-.rr-eq-bar:nth-child(1){height:4px;animation-delay:0s;}
-.rr-eq-bar:nth-child(2){height:10px;animation-delay:.15s;}
-.rr-eq-bar:nth-child(3){height:6px;animation-delay:.28s;}
-.rr-eq-bar:nth-child(4){height:13px;animation-delay:.1s;}
-.rr-eq-bar:nth-child(5){height:7px;animation-delay:.22s;}
-@keyframes eqB{0%{transform:scaleY(.25);}100%{transform:scaleY(1);}}
-.rr-eq.paused .rr-eq-bar{animation-play-state:paused;}
+/* ─── LIVE TICKER (replaces radio trigger) ─── */
+#live-ticker{position:fixed;left:28px;bottom:28px;z-index:400;display:flex;align-items:center;gap:12px;padding:10px 18px 10px 12px;background:rgba(0,15,30,.65);border:1px solid var(--border2);border-radius:var(--r);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);box-shadow:0 8px 40px rgba(0,0,0,.4);}
+.lt-dot{width:8px;height:8px;border-radius:50%;background:var(--accent3);flex-shrink:0;animation:dotPulse 2s infinite;}
+.lt-info{display:flex;flex-direction:column;gap:2px;}
+.lt-time{font-family:var(--mono);font-size:13px;font-weight:700;color:var(--white);letter-spacing:.04em;}
+.lt-meta{font-family:var(--mono);font-size:9px;color:var(--text2);letter-spacing:.1em;text-transform:uppercase;}
+.lt-weather{display:flex;align-items:center;gap:6px;padding-left:12px;border-left:1px solid var(--border2);}
+.lt-temp{font-family:var(--mono);font-size:13px;font-weight:700;color:var(--accent);}
+.lt-cond{font-size:16px;}
 .rr-track{font-family:var(--mono);font-size:9px;color:var(--text2);letter-spacing:.04em;max-width:145px;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;}
 .rr-live{display:inline-flex;align-items:center;gap:4px;padding:2px 7px;border-radius:3px;background:rgba(255,77,46,.1);border:1px solid rgba(255,77,46,.3);font-family:var(--mono);font-size:9px;color:var(--accent2);letter-spacing:.12em;margin-top:1px;}
 .rr-live-dot{width:5px;height:5px;border-radius:50%;background:var(--accent2);animation:dotPulse 1.5s infinite;}
-
-/* ─── RADIO POPUP ─── */
-#radio-popup{position:fixed;left:28px;bottom:116px;z-index:399;width:370px;background:rgba(0,10,25,.45);border:1px solid rgba(255,77,46,.2);border-radius:12px;box-shadow:0 32px 100px rgba(0,0,0,.7);backdrop-filter:blur(30px);-webkit-backdrop-filter:blur(30px);overflow:hidden;opacity:0;visibility:hidden;pointer-events:none;transform:translateY(14px)scale(.97);transition:all .28s cubic-bezier(.16,1,.3,1);}
-#radio-popup.open{opacity:1;visibility:visible;pointer-events:all;transform:translateY(0)scale(1);}
-#radio-popup::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(255,77,46,.5),transparent);}
-.rp-hd{display:flex;align-items:center;justify-content:space-between;padding:16px 18px 12px;border-bottom:1px solid rgba(255,77,46,.12);}
-.rp-hd-l{font-family:var(--sans);font-size:13px;font-weight:800;color:var(--white);display:flex;align-items:center;gap:8px;}
-.rp-hd-close{background:none;border:none;color:var(--text2);font-size:17px;cursor:pointer;padding:4px;transition:color .2s;line-height:1;}
-.rp-hd-close:hover{color:var(--white);}
-
-/* Visualizer */
-.rp-viz{position:relative;height:190px;background:radial-gradient(ellipse at center,rgba(255,77,46,.16) 0%,rgba(3,6,8,1) 70%);display:flex;align-items:center;justify-content:center;overflow:hidden;}
-.viz-ring{position:absolute;border-radius:50%;border:1px solid rgba(255,77,46,.4);animation:vizPulse 2.4s ease-out infinite;}
-.viz-ring:nth-child(1){width:112px;height:112px;animation-delay:0s;}
-.viz-ring:nth-child(2){width:152px;height:152px;animation-delay:.6s;border-color:rgba(255,77,46,.25);}
-.viz-ring:nth-child(3){width:198px;height:198px;animation-delay:1.2s;border-color:rgba(255,77,46,.12);}
-.viz-ring:nth-child(4){width:248px;height:248px;animation-delay:1.8s;border-color:rgba(255,77,46,.06);}
-.viz-ring.paused{animation-play-state:paused;}
-@keyframes vizPulse{0%{transform:scale(.6);opacity:1;}100%{transform:scale(1.4);opacity:0;}}
-.rp-disc{width:104px;height:104px;border-radius:50%;object-fit:cover;border:3px solid var(--accent2);box-shadow:0 0 48px rgba(255,77,46,.45);position:relative;z-index:2;}
-.rp-disc.spin{animation:discSpin 8s linear infinite;}
-.rp-disc.spin-pause{animation-play-state:paused;}
-@keyframes discSpin{from{transform:rotate(0);}to{transform:rotate(360deg);}}
-.rp-wave-row{position:absolute;bottom:0;left:0;right:0;height:44px;display:flex;align-items:flex-end;gap:3px;padding:0 14px 6px;z-index:1;}
-.wv{flex:1;max-width:7px;background:linear-gradient(to top,var(--accent2),rgba(255,77,46,.2));border-radius:2px 2px 0 0;animation:wvA .7s ease-in-out infinite alternate;}
-.wv:nth-child(odd){animation-delay:.1s;}.wv:nth-child(3n){animation-delay:.2s;}.wv:nth-child(4n){animation-delay:.35s;}
-@keyframes wvA{0%{height:3px;opacity:.3;}100%{height:32px;opacity:1;}}
-.wv.paused{animation-play-state:paused;}
-
-.rp-info{padding:16px 18px 12px;border-bottom:1px solid rgba(255,77,46,.1);}
-.rp-song{font-family:var(--sans);font-size:15px;font-weight:800;color:var(--white);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-bottom:3px;}
-.rp-artist{font-family:var(--mono);font-size:10px;color:var(--text2);letter-spacing:.06em;}
-.rp-prog{height:3px;background:rgba(255,255,255,.06);border-radius:2px;overflow:hidden;margin-top:12px;cursor:pointer;}
-.rp-prog-fill{height:100%;background:linear-gradient(90deg,var(--accent2),rgba(255,77,46,.4));width:0%;transition:width .4s linear;border-radius:2px;}
-.rp-times{display:flex;justify-content:space-between;font-family:var(--mono);font-size:9px;color:var(--text2);margin-top:5px;}
-
-.rp-controls{display:flex;align-items:center;gap:14px;padding:14px 18px;}
-.rp-play{width:50px;height:50px;border-radius:50%;background:var(--accent2);border:none;color:white;font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 24px rgba(255,77,46,.45);transition:all .2s;flex-shrink:0;}
-.rp-play:hover{transform:scale(1.12);box-shadow:0 8px 36px rgba(255,77,46,.65);}
-.rp-skip{width:32px;height:32px;border-radius:50%;background:rgba(255,77,46,.12);border:1px solid rgba(255,77,46,.3);color:var(--accent2);font-size:10px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s;flex-shrink:0;}
-.rp-skip:hover{background:rgba(255,77,46,.25);border-color:var(--accent2);transform:scale(1.1);}
-.rp-vol{display:flex;align-items:center;gap:8px;flex:1;}
-.rp-vol-ico{font-size:13px;color:var(--text2);}
-.rp-slider{flex:1;-webkit-appearance:none;height:3px;background:rgba(255,255,255,.08);border-radius:2px;outline:none;cursor:pointer;}
-.rp-slider::-webkit-slider-thumb{-webkit-appearance:none;width:13px;height:13px;border-radius:50%;background:var(--accent2);cursor:pointer;box-shadow:0 0 8px rgba(255,77,46,.5);}
-.rp-yt{font-family:var(--mono);font-size:9px;color:var(--text2);text-decoration:none;transition:color .2s;display:flex;align-items:center;gap:4px;white-space:nowrap;}
-.rp-yt:hover{color:var(--accent2);}
 
 /* ─── FOOTER ─── */
 footer{position:relative;z-index:1;padding:28px 64px;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;background:rgba(0,10,20,.1);backdrop-filter:blur(16px);}
@@ -480,7 +419,7 @@ footer{position:relative;z-index:1;padding:28px 64px;border-top:1px solid var(--
   /* Floats */
   .hire-float{right:16px;bottom:96px;}
   #chat-bubble{right:16px;bottom:16px;}
-  #radio-trigger{left:16px;bottom:16px;}
+  #live-ticker{left:16px;bottom:16px;}
 }
 
 /* ─── Mobile: 768px ─── */
@@ -553,14 +492,10 @@ footer{position:relative;z-index:1;padding:28px 64px;border-top:1px solid var(--
   .hire-float{right:12px;bottom:148px;}
   .hire-btn{padding:10px 14px;font-size:10px;gap:6px;}
   #chat-bubble{right:12px;bottom:76px;width:48px;height:48px;}
-  #radio-trigger{left:12px;bottom:12px;padding:8px 14px 8px 8px;}
-  .rr-info{display:none;}
+  #live-ticker{left:12px;bottom:12px;padding:8px 12px;}
 
   /* Chat window */
   #chat-window{width:calc(100vw - 24px);right:12px;bottom:136px;max-height:70vh;}
-
-  /* Radio popup */
-  #radio-popup{width:calc(100vw - 24px);left:12px;bottom:80px;}
 }
 
 /* ─── Small mobile: 480px ─── */
@@ -645,7 +580,7 @@ footer{position:relative;z-index:1;padding:28px 64px;border-top:1px solid var(--
 
 <!-- HIRE ME -->
 <div class="hire-float">
-  <a href="mailto:meragcm@gmail.com" class="hire-btn">✦ Hire Me</a>
+  <a href="/cdn-cgi/l/email-protection#fa979f889b9d9997ba9d979b9396d4999597" class="hire-btn">✦ Hire Me</a>
 </div>
 
 <!-- CHAT BUBBLE -->
@@ -679,8 +614,9 @@ footer{position:relative;z-index:1;padding:28px 64px;border-top:1px solid var(--
     <button class="sug-btn" data-q="What are Clarance's main skills?">Skills</button>
     <button class="sug-btn" data-q="Tell me about his SAP experience">SAP</button>
     <button class="sug-btn" data-q="What projects has he worked on?">Projects</button>
+    <button class="sug-btn" data-q="What's the weather in Gaborone right now?">Weather 🌤</button>
     <button class="sug-btn" data-q="How can I contact Clarance?">Contact</button>
-    <button class="sug-btn" data-q="Is he available for hire?">Availability</button>
+    <button class="sug-btn" data-q="Is he available for hire?">Hire</button>
   </div>
   <div class="chat-input-area">
     <input type="text" id="chat-inp" placeholder="Ask me anything about Clarance…" maxlength="300"/>
@@ -688,64 +624,16 @@ footer{position:relative;z-index:1;padding:28px 64px;border-top:1px solid var(--
   </div>
 </div>
 
-<!-- RADIO -->
-<iframe id="yt-frame" src="" allow="autoplay; encrypted-media" allowfullscreen style="position:absolute;width:1px;height:1px;opacity:0;pointer-events:none;left:-9999px;" title="yt-audio"></iframe>
-<div id="radio-trigger" title="Motivational Radio — Click to Open">
-  <div class="rr-ripple-wrap">
-    <div class="rr-ripple paused"></div>
-    <div class="rr-ripple paused"></div>
-    <div class="rr-ripple paused"></div>
-    <div class="rr-btn" id="radio-icon">🎵</div>
+<!-- LIVE TICKER -->
+<div id="live-ticker">
+  <div class="lt-dot"></div>
+  <div class="lt-info">
+    <div class="lt-time" id="lt-clock">--:--:--</div>
+    <div class="lt-meta" id="lt-date">Gaborone, BWA</div>
   </div>
-  <div class="rr-info">
-    <div class="rr-station">Moti FM
-      <div class="rr-eq paused" id="rr-eq">
-        <div class="rr-eq-bar"></div><div class="rr-eq-bar"></div>
-        <div class="rr-eq-bar"></div><div class="rr-eq-bar"></div>
-        <div class="rr-eq-bar"></div>
-      </div>
-    </div>
-    <div class="rr-track" id="rr-track-lbl">Motivational Radio</div>
-    <div class="rr-live"><div class="rr-live-dot"></div>LIVE</div>
-  </div>
-</div>
-
-<div id="radio-popup">
-  <div class="rp-hd">
-    <div class="rp-hd-l">🎵 Moti FM — Motivational Radio</div>
-    <button class="rp-hd-close" id="rp-close">✕</button>
-  </div>
-  <div class="rp-viz">
-    <div class="viz-ring paused"></div>
-    <div class="viz-ring paused"></div>
-    <div class="viz-ring paused"></div>
-    <div class="viz-ring paused"></div>
-    <img id="rp-disc" src="https://img.youtube.com/vi/inpok4MKVLM/hqdefault.jpg" class="rp-disc spin-pause" alt="Now Playing"/>
-    <div class="rp-wave-row">
-      <div class="wv paused"></div><div class="wv paused"></div><div class="wv paused"></div>
-      <div class="wv paused"></div><div class="wv paused"></div><div class="wv paused"></div>
-      <div class="wv paused"></div><div class="wv paused"></div><div class="wv paused"></div>
-      <div class="wv paused"></div><div class="wv paused"></div><div class="wv paused"></div>
-      <div class="wv paused"></div><div class="wv paused"></div><div class="wv paused"></div>
-      <div class="wv paused"></div>
-    </div>
-  </div>
-  <div class="rp-info">
-    <div class="rp-song" id="rp-song">It's Possible</div>
-    <div class="rp-artist" id="rp-artist">Les Brown — Motivational Speech</div>
-    <div class="rp-prog" id="rp-prog-bar"><div class="rp-prog-fill" id="rp-fill"></div></div>
-    <div class="rp-times"><span id="rp-cur">0:00</span><span id="rp-dur">--:--</span></div>
-  </div>
-  <div class="rp-controls">
-    <button class="rp-skip" id="rp-prev" title="Previous track">&#9664;&#9664;</button>
-    <button class="rp-play" id="rp-play"><svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><polygon points="5,3 19,12 5,21"/></svg></button>
-    <button class="rp-skip" id="rp-next" title="Next track">&#9654;&#9654;</button>
-    <div class="rp-vol">
-      <span class="rp-vol-ico">🔈</span>
-      <input type="range" class="rp-slider" id="rp-vol" min="0" max="100" value="80"/>
-      <span class="rp-vol-ico">🔊</span>
-    </div>
-    <a href="https://www.youtube.com/watch?v=inpok4MKVLM" target="_blank" class="rp-yt">▶ YT</a>
+  <div class="lt-weather" id="lt-weather" style="display:none">
+    <div class="lt-cond" id="lt-icon">🌤</div>
+    <div class="lt-temp" id="lt-temp">--°C</div>
   </div>
 </div>
 
@@ -795,7 +683,7 @@ footer{position:relative;z-index:1;padding:28px 64px;border-top:1px solid var(--
         <a href="https://clarance-app.vercel.app" target="_blank" class="btn btn-glow">View Portfolio ↗</a>
         <a href="https://github.com/Gagoope" target="_blank" class="btn btn-ghost">GitHub ↗</a>
         <a href="assets/cv.pdf" target ="_blank" class="btn btn-glow">Download CV</a>
-        <a href="mailto:meragcm@gmail.com" class="btn btn-ghost">Get in Touch</a>
+        <a href="/cdn-cgi/l/email-protection#137e76617274707e53747e727a7f3d707c7e" class="btn btn-ghost">Get in Touch</a>
 
       </div>
     </div>
@@ -826,7 +714,7 @@ footer{position:relative;z-index:1;padding:28px 64px;border-top:1px solid var(--
       <div class="hc-rows">
         <div class="hc-row"><span class="hc-row-k">Location</span><span class="hc-row-v">Nata, Botswana 🇧🇼</span></div>
         <div class="hc-row"><span class="hc-row-k">Phone</span><span class="hc-row-v"><a href="tel:+26777447823">+267 77447823</a></span></div>
-        <div class="hc-row"><span class="hc-row-k">Email</span><span class="hc-row-v"><a href="mailto:meragcm@gmail.com">meragcm@gmail.com</a></span></div>
+        <div class="hc-row"><span class="hc-row-k">Email</span><span class="hc-row-v"><a href="/cdn-cgi/l/email-protection#1e737b6c7f797d735e79737f7772307d7173"><span class="__cf_email__" data-cfemail="dab7bfa8bbbdb9b79abdb7bbb3b6f4b9b5b7">[email&#160;protected]</span></a></span></div>
         <div class="hc-row"><span class="hc-row-k">Portfolio</span><span class="hc-row-v"><a href="https://clarance-app.vercel.app" target="_blank">clarance-app.vercel.app</a></span></div>
         <div class="hc-row"><span class="hc-row-k">GitHub</span><span class="hc-row-v"><a href="https://github.com/Gagoope" target="_blank">github.com/Gagoope</a></span></div>
         <div class="hc-row"><span class="hc-row-k">Languages</span><span class="hc-row-v">English · Setswana</span></div>
@@ -993,9 +881,9 @@ footer{position:relative;z-index:1;padding:28px 64px;border-top:1px solid var(--
 <div class="sec" id="contact">
   <div class="sec-head reveal"><span class="sec-idx">08</span><h2 class="sec-title">Get in Touch</h2><div class="sec-line"></div></div>
   <div class="contact-grid">
-    <a href="mailto:meragcm@gmail.com" class="contact-link reveal">
+    <a href="/cdn-cgi/l/email-protection#701d15021117131d30171d11191c5e131f1d" class="contact-link reveal">
       <div class="c-ico-wrap">✉️</div>
-      <div><div class="c-lbl">Email</div><div class="c-val">meragcm@gmail.com</div></div>
+      <div><div class="c-lbl">Email</div><div class="c-val"><span class="__cf_email__" data-cfemail="5439312635333739143339353d387a373b39">[email&#160;protected]</span></div></div>
     </a>
     <a href="tel:+26777447823" class="contact-link reveal">
       <div class="c-ico-wrap">📞</div>
@@ -1026,7 +914,7 @@ footer{position:relative;z-index:1;padding:28px 64px;border-top:1px solid var(--
   <div class="cta-head reveal">Let's Build <span>Something</span><br>Together</div>
   <div class="cta-sub reveal">Open to full-time roles, contracts, and collaborative projects.</div>
   <div class="cta-btns reveal">
-    <a href="mailto:meragcm@gmail.com" class="btn btn-glow">✉ Send an Email</a>
+    <a href="/cdn-cgi/l/email-protection#7b161e091a1c18163b1c161a121755181416" class="btn btn-glow">✉ Send an Email</a>
     <a href="https://wa.me/26777447823?text=Hi%20Clarance%2C%20I%20found%20your%20portfolio!" target="_blank" class="btn btn-ghost" style="border-color:rgba(37,211,102,.4);color:#25d366;">
       <svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
       WhatsApp
@@ -1039,7 +927,7 @@ footer{position:relative;z-index:1;padding:28px 64px;border-top:1px solid var(--
 <footer>
   <div class="fl">© 2025 · GAGOOPE CLARANCE MERAFHE · ALL RIGHTS RESERVED</div>
   <div class="fr">
-    <a href="mailto:meragcm@gmail.com">Email</a>
+    <a href="/cdn-cgi/l/email-protection#9cf1f9eefdfbfff1dcfbf1fdf5f0b2fff3f1">Email</a>
     <a href="https://wa.me/26777447823" target="_blank">WhatsApp</a>
     <a href="tel:+26777447823">Phone</a>
     <a href="https://github.com/Gagoope" target="_blank">GitHub</a>
@@ -1047,7 +935,7 @@ footer{position:relative;z-index:1;padding:28px 64px;border-top:1px solid var(--
   </div>
 </footer>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 /* ── PRELOADER ── */
 window.addEventListener('load',()=>{setTimeout(()=>{document.getElementById('preloader').classList.add('hide');},2200);});
 
@@ -1125,151 +1013,50 @@ document.querySelectorAll('a[href^="#"]').forEach(a=>{
   });
 });
 
-/* ══════════ RADIO ══════════ */
+/* ══════════ LIVE TICKER ══════════ */
 (function(){
-  const TRACKS=[
-    {id:'inpok4MKVLM',song:"It's Possible",artist:"Les Brown — Motivational Speech"},
-    {id:'7sxpKhIbr0E',song:"Best Day of My Life",artist:"Fearless Motivation"},
-    {id:'ZXsQAXx_ao0',song:"Work Hard in Silence",artist:"Motivational Speeches"},
-    {id:'mgmVOuLgFB0',song:"Make It Happen",artist:"Eric Thomas — Motivational"},
-  ];
-  let idx=0,playing=false,player=null,ytReady=false,timer=null,pendingPlay=false;
+  const clock = document.getElementById('lt-clock');
+  const dateEl = document.getElementById('lt-date');
+  const weatherEl = document.getElementById('lt-weather');
+  const iconEl = document.getElementById('lt-icon');
+  const tempEl = document.getElementById('lt-temp');
 
-  const pop    = document.getElementById('radio-popup');
-  const trig   = document.getElementById('radio-trigger');
-  const rpClose= document.getElementById('rp-close');
-  const rpPlay = document.getElementById('rp-play');
-  const rpPrev = document.getElementById('rp-prev');
-  const rpNext = document.getElementById('rp-next');
-  const rpVol  = document.getElementById('rp-vol');
-  const rpFill = document.getElementById('rp-fill');
-  const rpCur  = document.getElementById('rp-cur');
-  const rpDur  = document.getElementById('rp-dur');
-  const rpSong = document.getElementById('rp-song');
-  const rpArtist=document.getElementById('rp-artist');
-  const rpDisc = document.getElementById('rp-disc');
-  const rrEq   = document.getElementById('rr-eq');
-  const rrLbl  = document.getElementById('rr-track-lbl');
-  const ripples  = document.querySelectorAll('.rr-ripple');
-  const vizRings = document.querySelectorAll('.viz-ring');
-  const waveBars = document.querySelectorAll('.wv');
+  const DAYS = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+  const MONTHS = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
 
-  /* open/close popup */
-  trig.addEventListener('click',()=>{
-    pop.classList.toggle('open');
-    if(pop.classList.contains('open') && !ytReady) loadYT();
-  });
-  rpClose.addEventListener('click',()=>pop.classList.remove('open'));
-
-  /* load YouTube IFrame API once */
-  function loadYT(){
-    if(document.getElementById('yt-api')) return;
-    const s=document.createElement('script');
-    s.id='yt-api';
-    s.src='https://www.youtube.com/iframe_api';
-    document.head.appendChild(s);
+  function tick(){
+    // Gaborone = UTC+2
+    const now = new Date(new Date().toLocaleString('en-US',{timeZone:'Africa/Gaborone'}));
+    const h = now.getHours().toString().padStart(2,'0');
+    const m = now.getMinutes().toString().padStart(2,'0');
+    const s = now.getSeconds().toString().padStart(2,'0');
+    clock.textContent = h+':'+m+':'+s;
+    dateEl.textContent = DAYS[now.getDay()]+', '+MONTHS[now.getMonth()]+' '+now.getDate()+' · Gaborone';
   }
+  tick();
+  setInterval(tick, 1000);
 
-  /* Called by YouTube when API is ready */
-  window.onYouTubeIframeAPIReady=function(){
-    ytReady=true;
-    player=new YT.Player('yt-frame',{
-      height:'1',width:'1',
-      videoId:TRACKS[idx].id,
-      playerVars:{
-        autoplay:0,controls:0,disablekb:1,
-        fs:0,iv_load_policy:3,modestbranding:1,
-        rel:0,origin:location.origin,
-        enablejsapi:1,playsinline:1
-      },
-      events:{
-        onReady(e){
-          e.target.setVolume(+rpVol.value);
-          updateUI(idx);
-          /* if user clicked play before API was ready, start now */
-          if(pendingPlay){ pendingPlay=false; player.playVideo(); }
-        },
-        onStateChange(e){
-          if(e.data===YT.PlayerState.PLAYING)      setState(true);
-          else if(e.data===YT.PlayerState.PAUSED)  setState(false);
-          else if(e.data===YT.PlayerState.ENDED)   { idx=(idx+1)%TRACKS.length; loadTrack(idx,true); }
-        }
+  // Fetch Gaborone weather via Open-Meteo (free, no key)
+  async function fetchWeather(){
+    try {
+      const r = await fetch('https://api.open-meteo.com/v1/forecast?latitude=-24.65&longitude=25.91&current_weather=true&temperature_unit=celsius');
+      const d = await r.json();
+      if(d && d.current_weather){
+        const wmo = d.current_weather.weathercode;
+        const temp = Math.round(d.current_weather.temperature);
+        const icons = {0:'☀️',1:'🌤',2:'⛅',3:'☁️',45:'🌫',48:'🌫',51:'🌦',53:'🌧',55:'🌧',61:'🌧',63:'🌧',65:'🌧',71:'🌨',73:'🌨',75:'❄️',80:'🌦',81:'🌧',82:'⛈',95:'⛈',96:'⛈',99:'⛈'};
+        iconEl.textContent = icons[wmo] || '🌡';
+        tempEl.textContent = temp+'°C';
+        weatherEl.style.display = 'flex';
       }
-    });
-  };
-
-  function loadTrack(i,autoPlay){
-    if(!player) return;
-    idx=i; updateUI(i);
-    if(autoPlay) player.loadVideoById(TRACKS[i].id);
-    else         { player.cueVideoById(TRACKS[i].id); setState(false); }
+    } catch(e){}
   }
+  fetchWeather();
+  setInterval(fetchWeather, 10*60*1000); // refresh every 10 min
 
-  function updateUI(i){
-    const t=TRACKS[i];
-    rpSong.textContent   = t.song;
-    rpArtist.textContent = t.artist;
-    rrLbl.textContent    = t.song;
-    rpDisc.src=`https://img.youtube.com/vi/${t.id}/hqdefault.jpg`;
-    rpDisc.onerror=()=>{rpDisc.src=`https://img.youtube.com/vi/${t.id}/default.jpg`;};
-    rpFill.style.width='0%'; rpCur.textContent='0:00'; rpDur.textContent='--:--';
-    const ytLink=document.querySelector('.rp-yt');
-    if(ytLink) ytLink.href=`https://www.youtube.com/watch?v=${t.id}`;
-  }
-
-  function setState(on){
-    playing=on;
-    rpPlay.innerHTML = on
-      ? '<svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>'
-      : '<svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><polygon points="5,3 19,12 5,21"/></svg>';
-    ripples.forEach(r  => r.classList.toggle('paused',!on));
-    vizRings.forEach(r => r.classList.toggle('paused',!on));
-    waveBars.forEach(b => b.classList.toggle('paused',!on));
-    if(rrEq) rrEq.classList.toggle('paused',!on);
-    rpDisc.classList.toggle('spin',on);
-    rpDisc.classList.toggle('spin-pause',!on);
-    document.getElementById('radio-icon').textContent=on?'🔊':'🎵';
-    clearInterval(timer);
-    if(on){
-      timer=setInterval(()=>{
-        if(!player||typeof player.getCurrentTime!=='function') return;
-        const c=player.getCurrentTime()||0, d=player.getDuration()||0;
-        if(d>0){
-          rpFill.style.width=(c/d*100).toFixed(2)+'%';
-          rpCur.textContent=fmt(c);
-          rpDur.textContent=fmt(d);
-        }
-      },500);
-    }
-  }
-
-  function fmt(s){ s=Math.floor(s); return Math.floor(s/60)+':'+(s%60).toString().padStart(2,'0'); }
-
-  /* ── Controls ── */
-  rpPlay.addEventListener('click',()=>{
-    if(!ytReady){ loadYT(); pendingPlay=true; return; }
-    if(!player) return;
-    playing ? player.pauseVideo() : player.playVideo();
-  });
-
-  if(rpPrev) rpPrev.addEventListener('click',()=>{
-    const i=(idx-1+TRACKS.length)%TRACKS.length;
-    loadTrack(i, playing);
-  });
-  if(rpNext) rpNext.addEventListener('click',()=>{
-    const i=(idx+1)%TRACKS.length;
-    loadTrack(i, playing);
-  });
-
-  rpVol.addEventListener('input',()=>{
-    if(player && player.setVolume) player.setVolume(+rpVol.value);
-  });
-
-  document.getElementById('rp-prog-bar').addEventListener('click',function(e){
-    if(!player) return;
-    const d=player.getDuration()||0;
-    if(d>0) player.seekTo(e.offsetX/this.offsetWidth*d,true);
-  });
+  // Expose weather data for the chatbot to use
+  window._liveWeather = {getTemp:()=>tempEl.textContent, getIcon:()=>iconEl.textContent};
+  window._liveTime = {getClock:()=>clock.textContent, getDate:()=>dateEl.textContent};
 })();
 
 /* ══════════ WATER CANVAS ══════════ */
@@ -1470,7 +1257,7 @@ document.querySelectorAll('a[href^="#"]').forEach(a=>{
 
   drawFrame();
 })();
-const SP=`You are a friendly, professional AI assistant for Gagoope Clarance Merafhe's portfolio website. Answer questions about Clarance concisely and warmly.
+const SP=`You are a friendly, professional AI assistant for Gagoope Clarance Merafhe's portfolio website. You have access to real-time data about Clarance's location. Answer questions about Clarance concisely and warmly. Be conversational, engaging, and helpful — you can answer general questions too, not just about Clarance.
 
 ABOUT CLARANCE:
 - Full name: Gagoope Clarance Merafhe
@@ -1490,7 +1277,14 @@ EDUCATION: BEng Computer Engineering (Botho University), BGCSE 36pts, JC 41pts, 
 
 REFERENCES: Mr. Mokgothu (6212213), Mr. Jeremiah/Dipateletso/Ms. Blackie (6211271)
 
-Keep responses to 2-4 sentences. Never fabricate info. Direct all contact to meragcm@gmail.com or +267 77447823.`;
+REAL-TIME CONTEXT (injected dynamically): {{REALTIME}}
+
+BEHAVIOUR RULES:
+- Keep responses to 2-4 sentences for portfolio questions.
+- For general questions (weather, time, greetings), be brief and friendly.
+- If asked about weather or time in Gaborone/Botswana, use the real-time context above.
+- Never fabricate info about Clarance. Direct all contact to meragcm@gmail.com or +267 77447823.
+- You can answer light general knowledge questions but gently redirect to Clarance's work when relevant.`;
 
 const CW=document.getElementById('chat-window');
 const CB=document.getElementById('chat-bubble');
@@ -1548,12 +1342,19 @@ function showDots(){
   CM.appendChild(w); CM.scrollTop=CM.scrollHeight;
 }
 
+function getRealtime(){
+  const time = window._liveTime ? window._liveTime.getDate()+', '+window._liveTime.getClock() : 'unavailable';
+  const weather = window._liveWeather ? 'Temperature in Gaborone: '+window._liveWeather.getTemp()+' '+window._liveWeather.getIcon() : 'weather unavailable';
+  return 'Current local time in Gaborone: '+time+'. '+weather+'.';
+}
+
 async function send(text){
   if(busy) return;
   busy=true;
   addMsg('user',text);
   hist.push({role:'user',content:text});
   showDots();
+  const systemWithData = SP.replace('{{REALTIME}}', getRealtime());
   try{
     const resp=await fetch('https://api.anthropic.com/v1/messages',{
       method:'POST',
@@ -1565,7 +1366,7 @@ async function send(text){
       body:JSON.stringify({
         model:'claude-haiku-4-5-20251001',
         max_tokens:400,
-        system:SP,
+        system:systemWithData,
         messages:hist
       })
     });
@@ -1575,6 +1376,7 @@ async function send(text){
       const reply=data.content[0].text;
       hist.push({role:'assistant',content:reply});
       addMsg('bot',reply);
+      showSmartSugs(text);
     } else {
       hist.push({role:'assistant',content:'[fallback]'});
       addMsg('bot', fallback(text));
@@ -1586,9 +1388,44 @@ async function send(text){
   busy=false;
 }
 
+function showSmartSugs(lastQ){
+  const lq=lastQ.toLowerCase();
+  const allSugs=[
+    {q:"What are Clarance's main skills?",l:"Skills"},
+    {q:"Tell me about his SAP experience",l:"SAP"},
+    {q:"What projects has he worked on?",l:"Projects"},
+    {q:"How can I contact Clarance?",l:"Contact"},
+    {q:"Is he available for hire?",l:"Hire"},
+    {q:"What's the weather in Gaborone?",l:"Weather 🌤"},
+    {q:"What time is it in Gaborone?",l:"Local Time"},
+    {q:"Tell me about his education",l:"Education"},
+  ];
+  // pick 3 sugs not related to last query
+  const filtered = allSugs.filter(s=>!lq.includes(s.l.toLowerCase().replace(' 🌤',''))).slice(0,3);
+  if(!filtered.length) return;
+  SG.innerHTML='';
+  filtered.forEach(s=>{
+    const b=document.createElement('button');
+    b.className='sug-btn'; b.dataset.q=s.q; b.textContent=s.l;
+    b.addEventListener('click',()=>{send(b.dataset.q); SG.innerHTML='';});
+    SG.appendChild(b);
+  });
+  SG.style.display='flex';
+}
+
 /* Canned fallback answers when API key isn't configured */
 function fallback(q){
   q=q.toLowerCase();
+  if(/weather|temperature|temp|hot|cold|rain/.test(q)){
+    const t=window._liveWeather?window._liveWeather.getTemp():'unknown';
+    const ic=window._liveWeather?window._liveWeather.getIcon():'🌡';
+    return `Right now in Gaborone it's ${ic} ${t}. Clarance is based nearby in Nata, Botswana — a beautiful part of the country!`;
+  }
+  if(/time|clock|hour/.test(q)){
+    const d=window._liveTime?window._liveTime.getDate():'unknown';
+    const c=window._liveTime?window._liveTime.getClock():'--:--';
+    return `The current local time in Gaborone is ${c} (${d}, CAT/UTC+2).`;
+  }
   if(/skill|tech|stack|know|language|code|program/.test(q))
     return 'Clarance is skilled in HTML, CSS, JavaScript, PHP, C#, SQL Server, MySQL, SAP B1 (9.x/10.0), SAP SDK (UI & DI API), Crystal Reports, Power BI, and Microsoft 365.';
   if(/sap|erp|b1|iduela/.test(q))
@@ -1598,22 +1435,8 @@ function fallback(q){
   if(/contact|email|phone|reach|hire|available/.test(q))
     return 'Clarance is available for work! Reach him at meragcm@gmail.com or +267 77447823. He\'s based in Gaborone, Botswana.';
   if(/edu|study|degree|university|school/.test(q))
-    return 'Clarance holds a BEng in Computer Engineering from Botho University, plus BGCSE (36pts), JC (41pts), and PSLE Grade A.';
-  if(/experience|job|role|work/.test(q))
-    return 'Most recently an IDuela Developer Trainee at RPC Data Limited (Apr 2024–Mar 2025), and before that IT Assistant Officer at Kutlwano JSS (Jul–Nov 2022).';
-  return 'Clarance is an IT Systems & Web Developer from Botswana, skilled in SAP B1, web development, and database systems. Contact him at meragcm@gmail.com or +267 77447823!';
+    return 'Clarance holds a BEng in Computer Engineering from Botho University, Botswana.';  return "I'm Clarance's AI assistant! Ask me about his skills, projects, SAP experience, or how to get in touch.";
 }
 </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
