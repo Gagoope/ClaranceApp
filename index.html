@@ -1356,26 +1356,19 @@ async function send(text){
   showDots();
   const systemWithData = SP.replace('{{REALTIME}}', getRealtime());
   try{
-    const resp=await fetch('https://api.anthropic.com/v1/messages',{
+    const resp=await fetch('/api/chat',{
       method:'POST',
-      headers:{
-        'content-type':'application/json',
-        'anthropic-version':'2023-06-01',
-        'anthropic-dangerous-direct-browser-access':'true'
-      },
+      headers:{'content-type':'application/json'},
       body:JSON.stringify({
-        model:'claude-haiku-4-5-20251001',
-        max_tokens:400,
         system:systemWithData,
         messages:hist
       })
     });
     const data=await resp.json();
     document.getElementById('tdots')?.remove();
-    if(data.content&&data.content[0]&&data.content[0].text){
-      const reply=data.content[0].text;
-      hist.push({role:'assistant',content:reply});
-      addMsg('bot',reply);
+    if(data.reply){
+      hist.push({role:'assistant',content:data.reply});
+      addMsg('bot',data.reply);
       showSmartSugs(text);
     } else {
       hist.push({role:'assistant',content:'[fallback]'});
